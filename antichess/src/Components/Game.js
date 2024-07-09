@@ -42,10 +42,10 @@ const Game = () => {
   };
 
   return (
-    <div>
-      <ChessBoard board={game.board()} onSquareClick={handleSquareClick} />
+    <div style={{border : "3px solid grey"}}>
+      <ChessBoard board={game.board()} onSquareClick={handleSquareClick}  />
       <div>
-        <button onClick={handleQuit}>Quit</button>
+        <button onClick={handleQuit} style={{padding :"4px", backgroundColor :'crimson' , color :"whitesmoke" , margin :'10px' , borderRadius :'4px'}}>Quit</button>
       </div>
       {errorMessage && <div>{errorMessage}</div>}
       {game.isCheckmate() && (
