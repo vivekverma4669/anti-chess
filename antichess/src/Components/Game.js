@@ -30,7 +30,7 @@ const Game = () => {
       setSelectedSquare(null);
       setPlayerTurn(playerTurn === 'w' ? 'b' : 'w');
       setErrorMessage('');
-    } else {
+    }else {
       setErrorMessage('Invalid move, please try again.');
     }
   };
@@ -42,11 +42,10 @@ const Game = () => {
   };
 
   return (
+    <div style={{display :'flex' , justifyContent :'space-between'}}>
     <div style={{border : "3px solid grey"}}>
       <ChessBoard board={game.board()} onSquareClick={handleSquareClick}  />
-      <div>
-        <button onClick={handleQuit} style={{padding :"4px", backgroundColor :'crimson' , color :"whitesmoke" , margin :'10px' , borderRadius :'4px'}}>Quit</button>
-      </div>
+      
       {errorMessage && <div>{errorMessage}</div>}
       {game.isCheckmate() && (
         <div>
@@ -55,6 +54,11 @@ const Game = () => {
       )}
       {game.isDraw() && <div>Draw!</div>}
     </div>
+
+    <div>
+        <button onClick={handleQuit} style={{padding :"4px", backgroundColor :'crimson' , color :"whitesmoke" , margin :'10px' , borderRadius :'4px'}}>Quit</button>
+      </div>
+      </div>
   );
 };
 

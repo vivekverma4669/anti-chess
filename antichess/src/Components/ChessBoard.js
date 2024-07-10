@@ -1,69 +1,6 @@
-// import React, { useState, useEffect } from 'react';
-// import styled from 'styled-components';
-// import { Chess } from 'chess.js';
-
-// const BoardWrapper = styled.div`
-//   display: grid;
-//   grid-template-columns: repeat(8, 50px);
-//   grid-template-rows: repeat(8, 50px);
-// `;
-
-// const Square = styled.div`
-//   width: 50px;
-//   height: 50px;
-//   background-color: ${(props) => props.isDark ? 'gray' : 'white'};
-// `;
-
-// const Piece = styled.div`
-//   font-size: 40px;
-//   text-align: center;
-//   line-height: 50px;
-// `;
 
 
-
-
-// const ChessBoard = () => {
-//   const [game, setGame] = useState(new Chess());
-
-//   useEffect(() => {
-    
-//   }, []);
-
-
-//   const renderSquare = (i, isDark) => (
-
-//     <Square key={i} isDark={isDark}>
-//       {renderPiece(i)}
-//     </Square>
-//   );
-
-
-//   const renderPiece = (i) => {
-//     const piece = game.board()[Math.floor(i / 8)][i % 8];
-//     if (piece) {
-//       const unicode = {
-//         p: '♟', r: '♜', n: '♞', b: '♝', q: '♛', k: '♚',
-//         P: '♙', R: '♖', N: '♘', B: '♗', Q: '♕', K: '♔'
-//       };
-//       return <Piece>{unicode[piece.type]}</Piece>;
-//     }
-//     return null;
-//   };
-
-//   const squares = [];
-//   for (let i = 0; i < 64; i++) {
-//     const isDark = (Math.floor(i / 8) + (i % 8)) % 2 === 1;
-//     squares.push(renderSquare(i, isDark));
-//   }
-
-
-//   return <BoardWrapper>{squares}</BoardWrapper>;
-// };
-
-// export default ChessBoard;
-
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const BoardWrapper = styled.div`
@@ -76,19 +13,34 @@ const BoardWrapper = styled.div`
 const Square = styled.div`
   width: 50px;
   height: 50px;
-  background-color: ${(props) => (props.isDark ? 'gray' : 'white')};
+  background-color: ${(props) => (props.isDark ? '#8B4513' : '#F5DEB3')};
   display: flex;
   justify-content: center;
   align-items: center;
+
+  &:hover {
+    cursor: pointer;
+    background-color: ${(props) => (props.isDark ? '#A0522D' : '#EEE8AA')};
+  }
 `;
 
 const Piece = styled.div`
+  cursor: pointer;
   font-size: 40px;
+  font-family: 'Georgia', serif;
+  color: ${(props) => (props.isWhite ? 'white' : 'black')};
 `;
 
 const ChessBoard = ({ board, onSquareClick }) => {
+  const [currentPlayer, setCurrentPlayer] = useState('w');
+
+  const handleSquareClick = (i) => {
+    onSquareClick(i);
+    setCurrentPlayer((prevPlayer) => (prevPlayer === 'w' ? 'b' : 'w'));
+  };
+
   const renderSquare = (i, isDark) => (
-    <Square key={i} isDark={isDark} onClick={() => onSquareClick(i)}>
+    <Square key={i} isDark={isDark} onClick={() => handleSquareClick(i)}>
       {renderPiece(i)}
     </Square>
   );
@@ -98,9 +50,10 @@ const ChessBoard = ({ board, onSquareClick }) => {
     if (piece) {
       const unicode = {
         p: '♟', r: '♜', n: '♞', b: '♝', q: '♛', k: '♚',
-        P: '♙', R: '♖', N: '♘', B: '♗', Q: '♕', K: '♔'
+        P: '♙', R: '♖', N: '♘', B: '♗', Q: '♕', K: '♔',
       };
-      return <Piece>{unicode[piece.type]}</Piece>;
+      const isWhite = piece.color === 'w';
+      return <Piece isWhite={isWhite}>{unicode[piece.type]}</Piece>;
     }
     return null;
   };
@@ -111,7 +64,12 @@ const ChessBoard = ({ board, onSquareClick }) => {
     squares.push(renderSquare(i, isDark));
   }
 
-  return <BoardWrapper>{squares}</BoardWrapper>;
+  return (
+    <>
+      <BoardWrapper>{squares}</BoardWrapper>
+      <p>Current Player: {currentPlayer === 'w' ? 'White' : 'Black'}</p>
+    </>
+  );
 };
 
 export default ChessBoard;

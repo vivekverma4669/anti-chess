@@ -8,7 +8,9 @@ function App() {
     <div className="App" >
        <h1>Anti chess Game</h1>
       {/* <ChessBoard/> */}
-      <div style={{display :'flex' , justifyContent :'center' , alignItems :'center', width :'50%' ,margin :'auto', border :"2px solid black"}}>
+      <p> first tap for select chess piece and then secound tap to move the chess piece  </p>
+
+      <div style={{display :'flex', justifyContent :'center' , alignItems :'center', width :'80%' ,margin :'auto', border :"2px solid black"}}>
       <Game/>
       </div>
     </div>
