@@ -1,38 +1,51 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+* {
+    margin: 0;
+    padding: 0;
   }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+  
+  body {
+    /* background-color: #045b8a;  */
+    background: linear-gradient(179.2deg, rgb(34, 34, 34) 0%, rgb(8, 0, 153) 29.7%, rgb(118, 6, 166) 63.4%, rgba(152, 15, 52, 0.58) 100.1%);
+    color: #fff; 
+    font-family: "Arial", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+    text-align: center; 
   }
-  to {
-    transform: rotate(360deg);
+  
+  button {
+    background: linear-gradient(65.5deg, rgb(23, 205, 205) -15.1%, rgb(23, 25, 95) 71.5%);
+    color: #fff; 
+    padding: 10px 20px;
+    border-radius: 3px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 25px;
+    transition: background-color 1.3s ease;
   }
-}
+  
+
+  h2{
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color:  rgb(0, 49, 81);
+    border-radius: 4px;
+
+    background: radial-gradient(1023px at 3.1% 6.9%, rgb(255, 255, 255) 0%, rgb(205, 40, 83) 74.9%);
+  }
+  span{
+   color : white
+  }
+
+  h1{
+   
+  margin-top: 10px;
+    margin-bottom: 20px;
+    background: linear-gradient(to right, #dd0060, #00aeff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+    
+  }
